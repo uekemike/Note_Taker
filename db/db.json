@@ -1,22 +1,12 @@
 [
   {
-    "title": "Note 1",
-    "text": "test 1",
-    "id": "df40"
+    "title": "Cooking list",
+    "text": "Tomatoes\nPepper\nOnions\n",
+    "id": "50ca"
   },
   {
-    "title": "Note 2",
-    "text": "test 2",
-    "id": "0156"
-  },
-  {
-    "title": "Note 3",
-    "text": "test 3",
-    "id": "2945"
-  },
-  {
-    "title": "note 4",
-    "text": "test 4",
-    "id": "68f3"
+    "title": "To do",
+    "text": "Get son ready for lacrosse\nDo some reading for node and express js\nCook some soup\nGo pick up mama\n",
+    "id": "2da5"
   }
 ]
