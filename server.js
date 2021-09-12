@@ -78,3 +78,31 @@ app.post("/api/notes",(req, res) => {
 
 //Delete the note: for deleting the note, we need to specify the d of the note which we are going to delete
 
+app.delete('/api/note/:id', (req, res) =>{
+    console.info("in the delete section");
+    const noteId = req.params.id;
+    readFromFile('./db/db.json')
+    .then((data) => JSON.parse(data))
+    .then((json) => {
+        //make a new array except for the one with the ID provided in the URL
+        const result = json.filter((notesjs) => notesjs.id !==noteId);
+        //save that array to the filesystem
+        writeToFile('./db/db.json', result);
+        //respond to the DELETE request
+        res.json(`Item ${noteId} has been deleted `);
+    });
+});
+
+// Get route for notes page
+app.get("/notes", (req,res) =>
+    res.sendFile(path.join(__dirname,'/public/notes.html'))
+);
+
+//Get routes for wildcard route
+app.get("*", (req, res) =>
+    res.sendFile(path.join(__dirname, '/public/index.html'))
+ );
+
+ app.listen(PORT, () =>
+ console.log(`App listenning at http://localhost:${PORT}`)
+ );
