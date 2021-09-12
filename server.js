@@ -2,9 +2,9 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const uuid = require('./Develop/helpers/uuid');
+const uuid = require('./helpers/uuid');
 const util = require('util');
-const notesjs = require('./Develop/db/db.json');
+const notesjs = require('./db/db.json');
 
 // initilize the app and create a port
 const app = express();
@@ -28,7 +28,7 @@ const readFromFile = util.promisify(fs.readFile);
  */
 
  const writeToFile =(destination, content) =>
- fs.writeFile(destination, JSON.stringify(content, null, 2),(err) =>
+ fs.writeFile(destination, JSON.stringify(content, null, 2), (err) =>
    err ? console.error(err): console.info(`\nData written to ${destination}`)
  );
 
@@ -41,9 +41,9 @@ const readFromFile = util.promisify(fs.readFile);
 
 const readAndAppend = (content, file) => {
     fs.readFile(file, 'utf8', (err, data) => {
-        if(err){
+        if(err) {
             console.error(err);
-        }else {
+        } else {
             const parsedData = JSON.parse(data);
             parsedData.push(content);
             writeToFile(file, parsedData);
@@ -78,7 +78,7 @@ app.post("/api/notes",(req, res) => {
 
 //Delete the note: for deleting the note, we need to specify the d of the note which we are going to delete
 
-app.delete('/api/note/:id', (req, res) =>{
+app.delete('/api/notes/:id', (req, res) => {
     console.info("in the delete section");
     const noteId = req.params.id;
     readFromFile('./db/db.json')
